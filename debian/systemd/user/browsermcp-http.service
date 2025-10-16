@@ -1,0 +1,18 @@
+[Unit]
+Description=BrowserMCP Enhanced - HTTP MCP Server (User)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=NODE_ENV=production
+Environment="HOME=__HOME__"
+EnvironmentFile=__ENV_FILE__
+WorkingDirectory=__INSTALL_DIR__
+ExecStart=__NODE_PATH__ __INSTALL_DIR__/dist/index-http.js --port ${BROWSER_MCP_HTTP_PORT}
+Restart=always
+RestartSec=3
+KillMode=process
+
+[Install]
+WantedBy=default.target

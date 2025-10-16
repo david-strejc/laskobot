@@ -1,0 +1,18 @@
+[Unit]
+Description=BrowserMCP Enhanced - WebSocket Daemon (User)
+After=network-online.target browsermcp-http.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+Environment=NODE_ENV=production
+Environment="HOME=__HOME__"
+EnvironmentFile=__ENV_FILE__
+WorkingDirectory=__INSTALL_DIR__
+ExecStart=__NODE_PATH__ __INSTALL_DIR__/dist/daemon/websocket-daemon.js
+Restart=always
+RestartSec=3
+KillMode=process
+
+[Install]
+WantedBy=default.target
